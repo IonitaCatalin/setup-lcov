@@ -21,9 +21,9 @@ make_install() {
   if [[ $(uname -s) =~ ^"Darwin" ]]; then
     brew install cpanm
   else
-    sudo cpan App::cpanminus
+     cpan App::cpanminus
   fi
-  sudo cpanm \
+   cpanm \
     --notest \
     Capture::Tiny \
     DateTime
@@ -38,14 +38,14 @@ make_install() {
     https://github.com/linux-test-project/lcov.git \
     $LCOV_DIR
   pushd $LCOV_DIR &> /dev/null
-  sudo make install
+   make install
   popd &> /dev/null
 }
 
 OS_NAME=$(uname -s)
 if [[ $OS_NAME =~ ^"Linux" ]]; then
   if [[ $REF == "" ]]; then
-    sudo apt-get -y install lcov
+    apt-get -y install lcov
   else
     make_install "$REF"
   fi
